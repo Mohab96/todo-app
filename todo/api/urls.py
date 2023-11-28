@@ -7,7 +7,9 @@ router.register('tasks', views.TaskViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('tags', views.TagViewSet)
 router.register('taggedTasks', views.TaggedTaskViewSet)
+router.register("users", views.UserViewSet)
 
 urlpatterns = [
-    path('hello/', views.hello)
+    path('export/', views.export),
+    path('search/', views.search)
 ] + router.urls
