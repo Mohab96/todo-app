@@ -1,14 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-
-
-class User(AbstractUser):
-    first_name = models.CharField(max_length=250, blank=False, null=False)
-    last_name = models.CharField(max_length=250, blank=False, null=False)
+from auth.models import User
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, models.CASCADE, related_name='tags')
 
     def __str__(self):
         return self.name
@@ -16,6 +12,7 @@ class Tag(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, models.CASCADE, related_name='categories')
 
     def __str__(self):
         return self.name
