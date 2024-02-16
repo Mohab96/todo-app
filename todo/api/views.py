@@ -5,12 +5,21 @@ from .models import *
 from auth.models import User
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
+from django.conf import settings
+from django.core.mail import send_mail, EmailMultiAlternatives
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def playground(request):
-    return Response('Just for testing purposes, have fun!')
+    print(request.__dict__)
+    subject = "Hello, its me"
+    text_content = "I was wondering if after all these years"
+    sender = "mohabyaserofficial2003@gmail.com"
+    recipient = "mohabkhaleefa540@gmail.com"
+    msg = EmailMultiAlternatives(subject, text_content, sender, [recipient])
+    msg.send()
 
 
 @api_view(['POST'])
