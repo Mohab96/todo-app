@@ -37,7 +37,7 @@ This is RESTful API for a simple task management app. It is built using Django a
 1. Clone the repository
 
 ```bash
-git clone
+git clone https://github.com/Mohab96/todo-app.git
 ```
 
 2. Change to the project directory
