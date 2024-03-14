@@ -7,19 +7,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from django.conf import settings
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import send_mail
+import asyncio
 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def playground(request):
-    print(request.__dict__)
-    subject = "Hello, its me"
-    text_content = "I was wondering if after all these years"
-    sender = "mohabyaserofficial2003@gmail.com"
-    recipient = "mohabkhaleefa540@gmail.com"
-    msg = EmailMultiAlternatives(subject, text_content, sender, [recipient])
-    msg.send()
+    pass
 
 
 @api_view(['POST'])

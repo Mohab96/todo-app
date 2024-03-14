@@ -1,3 +1,4 @@
+import asyncio
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -11,6 +12,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+from notificationapi_python_server_sdk import notificationapi
 
 
 def validate_registration_data(data):
@@ -105,6 +107,10 @@ def update_password(request):
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
+def SendEmail():
+    pass
+
+
 @api_view(['POST'])
 def forgot_password(request):
     email = request.data['email']
@@ -117,15 +123,8 @@ def forgot_password(request):
 
         token = default_token_generator.make_token(user)
         reset_url = f"{current_url}{uid}/{token}"
-        send_mail(
-            'Reset Your Password',
-            f"""
-            To reset your password click on the link below
-            {reset_url}
-            """,
-            settings.EMAIL_HOST_USER,
-            [email],
-        )
+        SendEmail(reset_url, user)
+
     except User.DoesNotExist:
         return Response({"There isn't any user found with this email"},
                         status=status.HTTP_400_BAD_REQUEST)

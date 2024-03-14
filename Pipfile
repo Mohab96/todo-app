@@ -23,6 +23,9 @@ webpush = "*"
 pytest = "*"
 pytest-django = "*"
 drf-yasg = "*"
+psycopg2 = "*"
+psycopg = "*"
+notificationapi-python-server-sdk = "*"
 
 [dev-packages]
 

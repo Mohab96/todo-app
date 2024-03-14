@@ -2,6 +2,7 @@ from datetime import datetime
 from celery import shared_task
 from api.models import Reminder
 from django.conf import settings
+from notificationapi_python_server_sdk import notificationap
 
 
 @shared_task
